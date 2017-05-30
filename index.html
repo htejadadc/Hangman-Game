@@ -3,85 +3,43 @@
 <head>
 	<meta charset="utf-8">
 	<title>The Hangman Game</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script scr="assets/javascript/game.js"></script>
 </head>
 <body>
-	<div id="hangman">
-		<p>PRESS ANY KEY TO GEY STARTED!</p>
-		<br>
-		<p>WINS</p>
-		<span id="wins">0</span>
-		<p>CURRENT WORD</p>
-		<p id="cword"></p>
-		<p>NUMBER OF GUESSES REMAINING</p>
-		<span id="remaining">20</span>
-		<p>LETTERS ALREADY GUESSED</p>
-		<p id="letters"></p>
-	</div>
-
-	<script type="text/javascript">
-		var movies = ["ARMAGEDDON", "JOHN WICK", "TAKEN", "SUPERMAN"];
-		var moviePick = movies [Math.floor(Math.random() * movies.length)];
-		var newWord = moviePick.split("");
-		var assembly = new Array(newWord.length);
-		var lettersGuessed = [];
-		var remaining = 20;
-		var wins = 0;
-
-		for (var i = 0; i < assembly.length; i++) {
-			assembly[i] = "_ ";
-		}
-		
-		function lettersPosition() {
-			for (var i = 0; i < assembly.length; i++) {
-				var cword = document.getElementById("cword");
-				var cwordUpdate = document.createTextNode(assembly[i]);
-				cword.appendChild(cwordUpdate);
-			}
-		}
-	
-			document.onkeyup = function (event) {
-				var userTry = event.key.toUpperCase();	
-				lettersGuessed.push(userTry);
-				console.log (lettersGuessed)
-				var picked = true;
-				for (var k = 0; k < lettersGuessed.length; k++) {
-					if (userTry === lettersGuessed[(k-1)]) {
-						picked = false;	
-					}
-				}			
-
-				if (picked) {
-						var letters = document.getElementById ("letters");
-						var	lettersUpdate = document.createTextNode (userTry + ", ");
-						letters.appendChild(lettersUpdate);
-						remaining--;
-						var remainingUpdate = document.getElementById("remaining");
-						remainingUpdate.textContent = remaining;		
-				}
-				
-				for (var j = 0; j < newWord.length; j++) {
-					if (userTry === newWord[j]) {
-						assembly [j] = newWord[j];
-						var cword = document.getElementById ("cword");
-						cword.innerHTML = "";
-						lettersPosition();
-					}
-				}
-
-				var tabulator = true;
-				for (var m = 0; m < assembly.length; m++) {
-					if (assembly[m] === "_ ") { 
-						tabulator = false;
-					}
-				}
-					
-				if (tabulator) {
-					var winsUpdate = document.getElementById ("wins")
-					winsUpdate.textContent = wins			
-				}					
-			};
-		
-	</script>
+	<header>
+		<div id="wrapper">
+			<h1>HANGMAN</h1> 
+			<H2>Movies</H2>
+		</div>
+	</header>
+	<div id="container">
+		<div id="content">
+			<img src="assets/images/starwars.jpg">
+		</div>
+		<aside>
+			<div id="hangman">
+				<p>PRESS ANY KEY TO GEY STARTED!</p>
+				<br>
+				<p>WINS:</p>
+				<p id="wins">0</p>
+				<br>
+				<p>CURRENT WORD:</p>
+				<br>
+				<p id="cword">_ _ _ _ _ _ _ _ _ _</p>
+				<br>
+				<p>NUMBER OF GUESSES REMAINING:</p>
+				<p id="remaining">20</p>
+				<br>
+				<p>LETTERS ALREADY GUESSED:</p>
+				<p id="letters"></p>
+			</div>				
+		</aside>
+	</div>	
+	<footer>
+		<div>Hangman Game</div>
+	</footer>
 </body>
 </html>
 
